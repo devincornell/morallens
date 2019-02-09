@@ -1,5 +1,31 @@
 
 
+mfdurl = 'https://www.moralfoundations.org/sites/default/files/files/downloads/moral%20foundations%20dictionary.dic'
+
+function parsedict(dtext) {
+    lines = dtext.split('\n')
+    for (var i = 0; i < lines.length; i++) {
+        tl = lines.trim()
+        if (tl.length > 0) {
+            
+        }
+    }
+}
+
+
+var xhr = new XMLHttpRequest();
+xhr.open("GET", mfdurl, true);
+xhr.onreadystatechange = function() {
+  if (xhr.readyState == 4) {
+    // JSON.parse does not evaluate the attacker's scripts.
+    //var resp = JSON.parse(xhr.responseText);
+    var dict = parsedict(xhr.responseText)
+    console.log(dict)
+  }
+}
+xhr.send();
+
+
 var hltext = '<span style="background-color: #{}">$1</span>';
 var matchcolors = [
     {'color':'FFFF00', 'words':['education', 'bilingual', 'playtime']},
