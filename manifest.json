@@ -10,7 +10,7 @@
 
 	 "content_scripts": [
 	   {
-	     "matches": ["http://*.nytimes.com/*","https://*.nytimes.com/*"],
+	     "matches": ["https://*.independent.com/*"],
 	     "js": ["content.js"]
 	   }
 	 ],
