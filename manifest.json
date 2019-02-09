@@ -1,0 +1,19 @@
+{
+	"name": "Getting Started Example",
+	"version": "1.0",
+	"description": "Build an Extension!",
+	"permissions": ["storage","activeTab"],
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	},
+
+	 "content_scripts": [
+	   {
+	     "matches": ["http://*.nytimes.com/*","https://*.nytimes.com/*"],
+	     "js": ["content.js"]
+	   }
+	 ],
+
+	"manifest_version": 2
+}
