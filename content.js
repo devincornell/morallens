@@ -13,7 +13,7 @@ function assignColors(codemap) {
 
 var HLTAGTEXT = '<span title="{title}" style="background-color: #{color}">$1</span>';
 function highlightPage(dictobj) {
-    console.log(dictobj);
+    //console.log(dictobj);
     var dict = dictobj['dict'];
     var colormap = assignColors(dictobj['codemap']);
 
