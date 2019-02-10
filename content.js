@@ -1,5 +1,4 @@
 
-mfdurl = 'https://www.moralfoundations.org/sites/default/files/files/downloads/moral%20foundations%20dictionary.dic'
 
 function convertRegex(str) {
     var nstr = str;
@@ -79,7 +78,6 @@ function parsedicttext(dtext) {
 }
 
 COLORS = ['6b5b95', 'feb236', 'd64161', 'ff7b25', 'a2b9bc', 'b2ad7f', '878f99', '6b5b95', 'd6cbd3', 'eca1a6', 'bdcebe', 'ada397', 'd5e1df', 'e3eaa7', 'b5e7a0', '86af49']
-var HLTAGTEXT = '<span style="background-color: #{}">$1</span>';
 
 function assignColors(codemap) {
     colormap = {};
@@ -91,6 +89,7 @@ function assignColors(codemap) {
     return colormap;
 }
 
+var HLTAGTEXT = '<span title="{title}" style="background-color: #{color}">$1</span>';
 function highlightPage(dictobj) {
     var dict = dictobj['dict'];
     var colormap = assignColors(dictobj['codemap']);
@@ -104,7 +103,8 @@ function highlightPage(dictobj) {
             // for now just highlight according to first category
             var cat = dict[w][0];
             var color = colormap[cat];
-            var hlcolortag = HLTAGTEXT.replace('{}',color);
+            var hlcolortag = HLTAGTEXT.replace('{color}',color);
+            hlcolortag = hlcolortag.replace('{title}',cat);
             re = new RegExp('(?![^<]*>)(' + w + ')','i');
             text = text.replace(re, hlcolortag);
         };
@@ -118,6 +118,7 @@ function highlightPage(dictobj) {
 
 
 // for parsing dict (later should be in "on install" event handler)
+mfdurl = 'https://www.moralfoundations.org/sites/default/files/files/downloads/moral%20foundations%20dictionary.dic'
 var xhr = new XMLHttpRequest();
 xhr.open("GET", mfdurl, true);
 xhr.onreadystatechange = function() {
@@ -134,26 +135,7 @@ xhr.onreadystatechange = function() {
 }
 xhr.send();
 
-/*
-chrome.storage.local.onChangedonChanged(function (changes, areaName) {
-    chrome.storage.local.get('dictionary', function (r) {
-        console.log('got dict ' + r);
-        return r;
-    });
 
-});
-
-console.log('idk what even ' + dict);
-*/
-
-var matchcolors = [
-    {'color':'FFFF00', 'words':['education', 'bilingual', 'playtime']},
-    {'color':'00FF00', 'words':['weekly', 'day', 'children']},
-]
-
-function escapeRegExp(string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
-}
 
 
 
