@@ -4,7 +4,7 @@
 	"description": "Build an Extension!",
 	"permissions": ["storage","activeTab","https://www.moralfoundations.org/"],
 	"background": {
-		"scripts": ["background.js"],
+		"scripts": ["background.js", "dicts.js"],
 		"persistent": false
 	},
 
